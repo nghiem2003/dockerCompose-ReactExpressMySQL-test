@@ -3,7 +3,7 @@
     "username": "root",
     "password": "",
     "database": "QLPK",
-    "host": "127.0.0.1",
+    "host": "db",
     "dialect": "mysql",
     "logging": false,
     "timezone": "+07:00"

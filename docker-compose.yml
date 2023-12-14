@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=QLPK
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - dbdata:/var/lib/qlpk/data
+    ports:
+      - '3306:3306'
+
+  server:
+    build: ./server
+    environment:
+      - DATABASE_URL=mysql://root:@db:3306/QLPK
+    ports:
+      - '8080:8080'
+
+volumes:
+  dbdata:

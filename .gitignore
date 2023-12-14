@@ -1,2 +1,10 @@
 node_modules
 package.json
+Qlypk*.*
+README.md 
+/client
+/server
+client
+server
+client/*
+server/*

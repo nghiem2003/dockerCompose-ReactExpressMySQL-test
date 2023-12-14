@@ -3,7 +3,7 @@ import CRUDService from '../services/CRUDService';
 
 let adminLogin = (req, res) => {
   return res.render('loginForm.ejs');
-}
+};
 
 let handleLogin = async (req, res) => {
   let email = req.body.email;
@@ -30,8 +30,7 @@ let handleLogin = async (req, res) => {
       req.session.roleId = role;
       console.log(req.session);
       return res.redirect('/get-all');
-    } 
-    else {
+    } else {
       return res.status(200).json({
         errCode: loginData.errCode,
         message: loginData.errMessage,
@@ -53,26 +52,26 @@ let adminLogout = async (req, res) => {
     // Chuyển hướng về trang admin/login sau khi logout
     return res.redirect('/admin/login'); // Thêm điều hướng vào đây
   });
-}
+};
 
 let getCreatePatient = (req, res) => {
   return res.render('createPatient.ejs');
-}
+};
 
 let getCreateDoctor = (req, res) => {
   return res.render('createDoctor.ejs');
-}
+};
 let postCreatePatient = async (req, res) => {
-    let message = await CRUDService.createNewPatient(req.body);
-    console.log(message)
-    return res.send(message.message);
-}
+  let message = await CRUDService.createNewPatient(req.body);
+  console.log(message);
+  return res.send(message.message);
+};
 
 let postCreateDoctor = async (req, res) => {
   let message = await CRUDService.createNewDoctor(req.body);
-  console.log(message)
+  console.log(message);
   return res.send(message.message);
-}
+};
 
 let displayGetCRUD = async (req, res) => {
   let data_patient = await CRUDService.getAllPatients();
@@ -89,14 +88,14 @@ let displayGetCRUD = async (req, res) => {
 
 let getEditPatient = async (req, res) => {
   let id = req.query.id;
-    if (id) {
-      let patientData = await CRUDService.getPatientInfoById(id);
-      return res.render('editPatient.ejs',{
-        patient: patientData //x<-y
-      });
-    } else {
-      return res.send('Patient not found');
-    }
+  if (id) {
+    let patientData = await CRUDService.getPatientInfoById(id);
+    return res.render('editPatient.ejs', {
+      patient: patientData, //x<-y
+    });
+  } else {
+    return res.send('Patient not found');
+  }
   //   if (id) {
   //     let doctorData = await CRUDService.getDoctorInfoById(id);
   //     return res.render('editCRUD.ejs',{
@@ -113,46 +112,46 @@ let putPatient = async (req, res) => {
   let data = req.body;
   let allPatients = await CRUDService.updatePatientData(data);
   let data_doctor = await CRUDService.getAllDoctors();
-    console.log('---------------------');
-    console.log(allPatients);
-    // console.log(data_doctor);
-    console.log('---------------------');
-    return res.render('displayCRUD.ejs', {
-        patients: allPatients,
-        doctors: data_doctor,
-    });
+  console.log('---------------------');
+  console.log(allPatients);
+  // console.log(data_doctor);
+  console.log('---------------------');
+  return res.render('displayCRUD.ejs', {
+    patients: allPatients,
+    doctors: data_doctor,
+  });
 };
 
 let getEditDoctor = async (req, res) => {
   let id = req.query.id;
-    if (id) {
-      let doctorData = await CRUDService.getDoctorInfoById(id);
-      return res.render('editDoctor.ejs',{
-        doctor: doctorData //x<-y
-      });
-    } else {
-      return res.send('Doctor not found');
-    }
+  if (id) {
+    let doctorData = await CRUDService.getDoctorInfoById(id);
+    return res.render('editDoctor.ejs', {
+      doctor: doctorData, //x<-y
+    });
+  } else {
+    return res.send('Doctor not found');
+  }
 };
 
 let putDoctor = async (req, res) => {
   let data = req.body;
   let data_patient = await CRUDService.getAllPatients();
   let allDoctors = await CRUDService.updateDoctorData(data);
-    console.log('---------------------');
-    console.log(allDoctors);
-    // console.log(data_doctor);
-    console.log('---------------------');
-    return res.render('displayCRUD.ejs', {
-      patients: data_patient,
-      doctors: allDoctors, 
-    });
+  console.log('---------------------');
+  console.log(allDoctors);
+  // console.log(data_doctor);
+  console.log('---------------------');
+  return res.render('displayCRUD.ejs', {
+    patients: data_patient,
+    doctors: allDoctors,
+  });
 };
 
 let deleteCRUD = async (req, res) => {
   let id = req.body.id;
-  let role = req.body.roleId
-  if(role === 'Patient'){
+  let role = req.body.roleId;
+  if (role === 'Patient') {
     if (id) {
       await CRUDService.deletePatientById(id);
       return res.send('Delete success');
@@ -160,7 +159,7 @@ let deleteCRUD = async (req, res) => {
       return res.send('Patient not found');
     }
   }
-  if(role === 'Doctor'){
+  if (role === 'Doctor') {
     if (id) {
       await CRUDService.deleteDoctorById(id);
       return res.send('Delete success');
