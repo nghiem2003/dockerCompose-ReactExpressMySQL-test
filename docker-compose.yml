@@ -11,11 +11,18 @@ services:
       - '3306:3306'
 
   server:
-    build: ./server
+    #build: ./server  #this only for build with /server file in it
+    image: misty1311/first-fullstack:server
     environment:
       - DATABASE_URL=mysql://root:@db:3306/QLPK
     ports:
       - '8080:8080'
 
+  client:
+    image: misty1311/first-fullstack:client
+    ports:
+      - '3000:3000'
+    depends_on:
+      - server
 volumes:
   dbdata:
