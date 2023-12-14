@@ -6,6 +6,14 @@ Here's the original project (archived):
 
 https://github.com/Kkrommm24/Project_SQLSERVER
 
+# how to use
+
+Install Docker and docker compose (if its require when excecuting command)
+
+Clone and pull this repository
+
+run `docker-compose up`
+
 # Clinic Booking Website
 
 As the demand for healthcare services is on the rise, finding clinics with top-notch medical facilities and excellent patient care has become increasingly important. To address this need, we have developed this website, dedicated to providing customers with accurate information about our clinic's services and how to easily schedule appointments online. Our goal is to offer a seamless and pleasant experience, ensuring that you can access the healthcare you need with convenience and confidence.
